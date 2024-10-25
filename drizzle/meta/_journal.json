@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1729862272192,
+      "tag": "0000_chunky_frog_thor",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1729863278205,
+      "tag": "0001_blushing_wolf_cub",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1729864026334,
+      "tag": "0002_early_omega_sentinel",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1729864646287,
+      "tag": "0003_complete_moondragon",
+      "breakpoints": true
+    }
+  ]
+}

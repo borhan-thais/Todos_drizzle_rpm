@@ -1,0 +1,14 @@
+{
+  "deno.enablePaths": [
+    "./"
+  ],
+  "deno.enable": true,
+  "editor.inlayHints.enabled": "off",
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#2C3006",
+    "titleBar.activeBackground": "#3E4408",
+    "titleBar.activeForeground": "#FAFCE6",
+    
+    
+  }
+}

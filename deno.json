@@ -1,0 +1,19 @@
+{
+  "imports": {
+    "@libsql/client": "npm:@libsql/client@^0.14.0",
+    "better-sqlite3": "npm:better-sqlite3@^11.5.0",
+    "dotenv": "npm:dotenv@^16.4.5",
+    "drizzle-kit": "npm:drizzle-kit@^0.26.2",
+    "drizzle-orm": "npm:drizzle-orm@^0.35.3",
+    "hono": "jsr:@hono/hono@^4.6.6",
+    "tsx": "npm:tsx@^4.19.1"
+  },
+  "tasks": {
+    "dev": "deno run -A --watch server.ts"
+  },
+  "compilerOptions": {
+    "jsx": "precompile",
+    "jsxImportSource": "hono/jsx"
+  },
+  "nodeModulesDir": "auto"
+}
