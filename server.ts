@@ -1,7 +1,6 @@
 import { Hono, type Context } from 'hono';
 import { db } from './db.ts';
 import { todosTable } from './schema.ts';
-import { parseBody } from 'hono/utils/body';
 import { eq } from 'drizzle-orm';
 
 const app = new Hono();
@@ -33,21 +32,21 @@ app.post('/', async (c: Context) => {
   }
 });
 
-app.delete('/:id', async (c: Context) => {
+app.delete('/todos', async (c: Context) => {
   try {
-    const id = Number(c.req.param('id'));
-    await db.delete(todosTable).where(eq(todosTable.id, id)).returning();
-    return c.text(`${id} Succesfully Deleted`);
+    await db.delete(todosTable).all();
+    return c.text('All todos deleted');
   } catch (error) {
     console.error('Error deleting the todo:', error);
     return c.text('Internal Server Error', 500);
   }
 });
 
-app.delete('/todos', async (c: Context) => {
+app.delete('/:id', async (c: Context) => {
   try {
-    await db.delete(todosTable);
-    return c.text('All todos deleted');
+    const id = Number(c.req.param('id'));
+    await db.delete(todosTable).where(eq(todosTable.id, id)).returning();
+    return c.text(`${id} Succesfully Deleted`);
   } catch (error) {
     console.error('Error deleting the todo:', error);
     return c.text('Internal Server Error', 500);
