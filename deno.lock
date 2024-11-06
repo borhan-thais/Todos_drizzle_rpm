@@ -727,6 +727,10 @@
       "integrity": "sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw=="
     }
   },
+  "remote": {
+    "https://esm.sh/v135/zod@3.21.4/denonext/zod.mjs": "3e104633fb5d127189f1a38f52f5620a21ec8988d639b5adcf5a65be1cbbcc62",
+    "https://esm.sh/zod@3.21.4": "dc4f42ed520b2e45b3463eaf7952c26b20cb315921c826c67eb55d9ec1898a08"
+  },
   "workspace": {
     "dependencies": [
       "jsr:@hono/hono@^4.6.6",
