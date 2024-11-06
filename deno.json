@@ -13,7 +13,7 @@
     
   },
   "tasks": {
-    "dev": "deno run -A --watch server.ts"
+    "dev": "deno serve -A --watch server.ts"
   },
   "compilerOptions": {
     "jsx": "precompile",

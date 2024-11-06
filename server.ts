@@ -3,6 +3,7 @@ import { db } from './db.ts';
 import { todosTable } from './schema.ts';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
+import { cors } from 'hono/cors';
 
 const todoSchema = z.object({
   name: z.string(),
@@ -10,6 +11,14 @@ const todoSchema = z.object({
 });
 
 const app = new Hono()
+  .use(
+    '*',
+    cors({
+      origin: 'http://localhost:3000', // Specify your frontend's origin
+      allowMethods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+      allowHeaders: ['Content-Type'], // Allowed headers
+    }),
+  )
   .get('/', async (c: Context) => {
     try {
       const todos = await db.select().from(todosTable).all();
@@ -33,25 +42,6 @@ const app = new Hono()
       return c.text('Internal Server Error', 500);
     }
   })
-  .delete('/todos', async (c: Context) => {
-    try {
-      await db.delete(todosTable).all();
-      return c.text('All todos deleted');
-    } catch (error) {
-      console.error('Error deleting the todo:', error);
-      return c.text('Internal Server Error', 500);
-    }
-  })
-  .delete('/:id', async (c: Context) => {
-    try {
-      const id = Number(c.req.param('id'));
-      await db.delete(todosTable).where(eq(todosTable.id, id)).returning();
-      return c.text(`${id} Succesfully Deleted`);
-    } catch (error) {
-      console.error('Error deleting the todo:', error);
-      return c.text('Internal Server Error', 500);
-    }
-  })
   .put('/:id', async (c: Context) => {
     try {
       const id = Number(c.req.param('id'));
@@ -66,6 +56,25 @@ const app = new Hono()
         .where(eq(todosTable.id, id))
         .returning();
       return c.text(`${id} Updated Succesfully`);
+    } catch (error) {
+      console.error('Error deleting the todo:', error);
+      return c.text('Internal Server Error', 500);
+    }
+  })
+  .delete('/todos', async (c: Context) => {
+    try {
+      await db.delete(todosTable).all();
+      return c.text('All todos deleted');
+    } catch (error) {
+      console.error('Error deleting the todo:', error);
+      return c.text('Internal Server Error', 500);
+    }
+  })
+  .delete('/:id', async (c: Context) => {
+    try {
+      const id = Number(c.req.param('id'));
+      await db.delete(todosTable).where(eq(todosTable.id, id)).returning();
+      return c.text(`${id} Succesfully Deleted`);
     } catch (error) {
       console.error('Error deleting the todo:', error);
       return c.text('Internal Server Error', 500);
