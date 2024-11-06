@@ -69,4 +69,5 @@ app.put('/:id', async (c: Context) => {
   }
 });
 
-Deno.serve(app.fetch);
+export default app;
+export type AppType = typeof app;
